@@ -1,18 +1,15 @@
 import React from "react";
-import style from "./App.module.scss";
+import ImageMasonry from "react-image-masonry";
 
 const App = () => (
   <div className="App">
-    <div
-      className={style["grid"]}
-      data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'
-    >
-      <div className={style["grid-item"]}></div>
-      <div className="grid-item grid-item--width2 grid-item--height2"></div>
-      <div className={style["grid-item--height3"]}></div>
-      <div className="grid-item grid-item--height2"></div>
-      <div className="grid-item grid-item--width3"></div>
-    </div>
+    <ImageMasonry
+      imageUrls={[
+        "https://media.giphy.com/media/8Ry7iAVwKBQpG/giphy.gif",
+        "https://media.giphy.com/media/KI9oNS4JBemyI/giphy.gif",
+      ]}
+      numCols={3}
+    />
   </div>
 );
 

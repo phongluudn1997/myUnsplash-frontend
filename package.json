@@ -10,19 +10,21 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "@types/styled-components": "^5.1.4",
     "masonry-layout": "^4.2.2",
     "node-sass": "^4.14.1",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-image-masonry": "^0.4.0",
     "react-scripts": "3.4.3",
+    "styled-components": "^5.2.0",
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "npm run build:css && react-scripts start",
+    "start": "react-app-rewired start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "build:css": "postcss src/styles/tailwind.scss -o src/styles/index.scss"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,7 +43,9 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
+    "customize-cra": "^1.0.0",
     "postcss-cli": "^8.1.0",
+    "react-app-rewired": "^2.1.6",
     "tailwindcss": "^1.9.2"
   }
 }
