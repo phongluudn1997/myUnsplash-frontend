@@ -1,14 +1,17 @@
 import React from "react";
+import style from "./App.module.scss";
 
 const App = () => (
-  <div className="max-w-md mx-auto flex p-6 bg-gray-100 mt-10 rounded-lg shadow-xl">
-    <div className="ml-6 pt-1">
-      <h1 className="text-2xl text-blue-700 leading-tight">
-        Tailwind and Create React App
-      </h1>
-      <p className="text-base text-gray-700 leading-normal">
-        Building apps together
-      </p>
+  <div className="App">
+    <div
+      className={style["grid"]}
+      data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 160 }'
+    >
+      <div className={style["grid-item"]}></div>
+      <div className="grid-item grid-item--width2 grid-item--height2"></div>
+      <div className={style["grid-item--height3"]}></div>
+      <div className="grid-item grid-item--height2"></div>
+      <div className="grid-item grid-item--width3"></div>
     </div>
   </div>
 );
