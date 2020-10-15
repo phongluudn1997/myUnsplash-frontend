@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from "react";
 import ImageMasonry from "react-image-masonry";
+import axios from "axios";
 
 export default function Gallery() {
   const [photos, setPhotos] = useState<string[]>([]);
+
   useEffect(() => {
-    setPhotos([
-      ...photos,
-      "https://media.giphy.com/media/8Ry7iAVwKBQpG/giphy.gif",
-      "https://media.giphy.com/media/8Ry7iAVwKBQpG/giphy.gif",
-      "https://www.w3schools.com/howto/img_snow.jpg",
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ6fEFQ2VOkoj6OT9z6--bmfcPqiGbJWcCJOg&usqp=CAU",
-    ]);
+    axios
+      .get("http://localhost:8000/api/photo", {
+        headers: {
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1Zjg3MmI1YTJiOTYyYzI1NjliODUwMDAiLCJpYXQiOjE2MDI3NzE4NzB9.5aAxzzNGllLK33U5-41u8iQLF-Jz1dsiKCmaHVnrHJw",
+        },
+      })
+      .then(
+        (res) => {
+          console.log(res);
+          setPhotos([...photos, ...res.data.data.listPhotos]);
+        },
+        (err) => console.log(err)
+      );
   }, []);
   return <ImageMasonry imageUrls={photos} numCols={3} />;
 }
