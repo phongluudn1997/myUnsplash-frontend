@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useFetchData } from "hooks";
+import { DataProfile } from "data-access";
 
 type Props = any;
 
@@ -7,17 +9,16 @@ const Login: React.FC<Props> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    axios
-      .post("http://localhost:8000/api/user/login", { email, password })
-      .then((res) => {
-        const { token } = res.data.data;
-        localStorage.setItem("token", `Bearer ${token}`);
-        props.setAuthen(true);
-      })
-      .catch((err) => {
-        console.log(err.response);
+  const handleSubmit = async () => {
+    try {
+      const response = await DataProfile.Post("/user/login", {
+        data: { email, password },
       });
+      props.setAuthen(true);
+      localStorage.setItem("token", `Bearer ${response.data.data.token}`);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
