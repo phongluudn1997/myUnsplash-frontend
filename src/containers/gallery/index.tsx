@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ImageMasonry from "react-image-masonry";
 import axios from "axios";
-import styles from "./styles.module.scss";
 import NavBar from "../nav";
+import Gallery from "react-photo-gallery";
+import demoPhotos from "./demoPhotos";
 
-type Props = any;
-
-const Gallery: React.FC<Props> = (props) => {
+export default (props: any) => {
   const [photos, setPhotos] = useState<string[]>([]);
 
   const handleClick = () => {
@@ -33,17 +31,11 @@ const Gallery: React.FC<Props> = (props) => {
         }
       );
   }, []);
+
   return (
     <div className="mt-lg">
       <NavBar />
-      <ImageMasonry
-        imageUrls={photos}
-        numCols={3}
-        animate={true}
-        className={`${styles["gallery"]}`}
-      />
+      <Gallery photos={demoPhotos} margin={12} columns={3} direction="column" />
     </div>
   );
 };
-
-export default Gallery;
