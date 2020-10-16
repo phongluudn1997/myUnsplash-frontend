@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styles from "./styles.module.scss";
 
 import Login from "../auth/login";
 import Gallery from "../gallery";
@@ -11,8 +12,16 @@ const App = () => {
     if (token) {
       setAuthen(true);
     }
-  }, []);
-  return <div className="App">{isAuthen ? <Gallery /> : <Login />}</div>;
+  }, [isAuthen]);
+  return (
+    <div className={styles["app"]}>
+      {isAuthen ? (
+        <Gallery setAuthen={setAuthen} />
+      ) : (
+        <Login setAuthen={setAuthen} />
+      )}
+    </div>
+  );
 };
 
 export default App;

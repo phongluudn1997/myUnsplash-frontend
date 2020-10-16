@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 
-const Login = () => {
+type Props = any;
+
+const Login: React.FC<Props> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -9,12 +11,12 @@ const Login = () => {
     axios
       .post("http://localhost:8000/api/user/login", { email, password })
       .then((res) => {
-        console.log(res);
         const { token } = res.data.data;
         localStorage.setItem("token", `Bearer ${token}`);
+        props.setAuthen(true);
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 

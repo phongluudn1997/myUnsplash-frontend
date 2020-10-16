@@ -1,0 +1,25 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+        height: 84px;
+        margin-right: 24px;
+    }
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.input-container {
+    border: solid 1px #bdbdbd;
+    padding: 18px;
+    border-radius: 24px;
+
+    input {
+        width: 240px;
+    }
+}
