@@ -2,12 +2,17 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useFetchData } from "hooks";
 import { DataProfile } from "data-access";
+import { useAuth } from "context/auth";
+import { Redirect } from "react-router-dom";
 
 type Props = any;
 
 const Login: React.FC<Props> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false);
+  const { setAuthToken } = useAuth();
+  const referer = props.location.state.referer || "/";
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -15,12 +20,16 @@ const Login: React.FC<Props> = (props) => {
       const response = await DataProfile.Post("/user/login", {
         data: { email, password },
       });
-      props.setAuthen(true);
-      localStorage.setItem("token", `Bearer ${response.data.data.token}`);
+      setAuthToken(`Bearer ${response.data.data.token}`);
+      setLoggedIn(true);
     } catch (err) {
-      console.log(err.response);
+      console.log(err);
     }
   };
+
+  if (isLoggedIn) {
+    return <Redirect to={referer} />;
+  }
 
   return (
     <div className="w-full max-w-xs mx-auto">

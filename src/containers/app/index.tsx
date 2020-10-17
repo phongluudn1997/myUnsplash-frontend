@@ -1,26 +1,26 @@
-import React, { useEffect, useState } from "react";
-import styles from "./styles.module.scss";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import PrivateRoute from "../../routes/private-route";
 
 import Login from "../auth/login";
 import Gallery from "../gallery";
+import { AuthContext } from "context/auth";
 
 const App = () => {
-  const [isAuthen, setAuthen] = useState(false);
+  const [token, setToken] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setAuthen(true);
-    }
-  }, [isAuthen]);
+  const setAuthToken = (token: string) => {
+    window.localStorage.setItem("token", token);
+    setToken(token);
+  };
+
   return (
-    <div className={styles["app"]}>
-      {isAuthen ? (
-        <Gallery setAuthen={setAuthen} />
-      ) : (
-        <Login setAuthen={setAuthen} />
-      )}
-    </div>
+    <AuthContext.Provider value={{ token, setAuthToken }}>
+      <Router>
+        <PrivateRoute path="/" exact component={Gallery} />
+        <Route path="/login" component={Login} />
+      </Router>
+    </AuthContext.Provider>
   );
 };
 
