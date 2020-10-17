@@ -9,7 +9,8 @@ const Login: React.FC<Props> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
       const response = await DataProfile.Post("/user/login", {
         data: { email, password },
@@ -17,13 +18,16 @@ const Login: React.FC<Props> = (props) => {
       props.setAuthen(true);
       localStorage.setItem("token", `Bearer ${response.data.data.token}`);
     } catch (err) {
-      console.log(err);
+      console.log(err.response);
     }
   };
 
   return (
     <div className="w-full max-w-xs mx-auto">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+      >
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -58,8 +62,7 @@ const Login: React.FC<Props> = (props) => {
         <div className="flex items-center justify-between">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="button"
-            onClick={handleSubmit}
+            type="submit"
           >
             Sign In
           </button>
