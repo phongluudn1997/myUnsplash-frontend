@@ -10,6 +10,10 @@ class DataAccess {
       baseURL,
       timeout: 10000,
     });
+    this._manner.interceptors.request.use((config: AxiosRequestConfig) => {
+      config.headers["Authorization"] = localStorage.getItem("token");
+      return config;
+    });
   }
   _request(method: Method, args: AxiosRequestConfig) {
     return this._manner({

@@ -1,5 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 import { DataProfile } from "../../../data-access";
+import styles from "./styles.module.scss";
 
 type Props = {
   setVisible: Function;
@@ -16,7 +17,6 @@ const AddModal = ({ setVisible }: Props) => {
     data.append("photo", file || "");
     DataProfile.Post("/photo", {
       data,
-      headers: { Authorization: window.localStorage.getItem("token") },
     }).then((res) => {
       console.log(res);
       setVisible(false);
@@ -28,20 +28,34 @@ const AddModal = ({ setVisible }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="label">Label</label>
-      <input
-        type="text"
-        name="label"
-        id="label"
-        onChange={(e) => setLabel(e.target.value)}
-      />
-      <input
-        type="file"
-        accept="image/gif, image/png, image/jpg"
-        onChange={handleFileChange}
-      />
-      <button type="submit">Submit</button>
+    <form onSubmit={handleSubmit} className={styles["modal"]}>
+      <div className={styles["body"]}>
+        <div>
+          <input
+            className={styles["label"]}
+            type="text"
+            name="label"
+            id="label"
+            onChange={(e) => setLabel(e.target.value)}
+            required
+            placeholder="How do you name this picture?"
+          />
+          <input
+            required
+            type="file"
+            accept="image/gif, image/png, image/jpg"
+            onChange={handleFileChange}
+          />
+        </div>
+      </div>
+      <div className={styles["footer"]}>
+        <span onClick={() => setVisible(false)} className={styles["secondary"]}>
+          Cancel
+        </span>
+        <button className={styles["primary"]} type="submit">
+          Submit
+        </button>
+      </div>
     </form>
   );
 };
