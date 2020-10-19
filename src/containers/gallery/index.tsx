@@ -7,11 +7,6 @@ import AddModal from "./addModal";
 
 export default (props: any) => {
   const [photos, setPhotos] = useState<string[]>([]);
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const handleClick = () => {
-    setModalVisible(true);
-  };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -36,8 +31,6 @@ export default (props: any) => {
 
   return (
     <div className="mt-lg">
-      <AddModal setVisible={setModalVisible} />
-      {isModalVisible ? <AddModal setVisible={setModalVisible} /> : null}
       <NavBar />
       <Gallery photos={demoPhotos} margin={12} columns={3} direction="column" />
     </div>
