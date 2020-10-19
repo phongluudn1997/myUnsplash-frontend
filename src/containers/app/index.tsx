@@ -7,7 +7,7 @@ import Gallery from "../gallery";
 import { AuthContext } from "context/auth";
 
 const App = () => {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   const setAuthToken = (token: string) => {
     window.localStorage.setItem("token", token);

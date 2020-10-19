@@ -3,12 +3,14 @@ import axios from "axios";
 import NavBar from "../nav";
 import Gallery from "react-photo-gallery";
 import demoPhotos from "./demoPhotos";
+import AddModal from "./addModal";
 
 export default (props: any) => {
   const [photos, setPhotos] = useState<string[]>([]);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const handleClick = () => {
-    console.log("click");
+    setModalVisible(true);
   };
 
   useEffect(() => {
@@ -34,6 +36,8 @@ export default (props: any) => {
 
   return (
     <div className="mt-lg">
+      <AddModal setVisible={setModalVisible} />
+      {isModalVisible ? <AddModal setVisible={setModalVisible} /> : null}
       <NavBar />
       <Gallery photos={demoPhotos} margin={12} columns={3} direction="column" />
     </div>
