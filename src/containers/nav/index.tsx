@@ -1,6 +1,5 @@
 import React, { SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
-import Button from "../../components/button";
 import Modal, { AddModal } from "components/modal";
 import logo from "assets/images/unsplash.svg";
 
@@ -17,12 +16,12 @@ const NavBar = () => {
         <nav className={styles["nav"]}>
           <div className={styles["left"]}>
             <img src={logo} alt="" />
-            <div className="w-full ml-16">
+            <div className="w-full">
               <form
                 onSubmit={handleSubmit}
                 className={`${styles["search-form"]} bg-gray-100`}
               >
-                <button className={styles["form-button"]}>
+                <button type="submit" className={styles["form-button"]}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -65,8 +64,19 @@ const NavBar = () => {
               </form>
             </div>
           </div>
-          <div>
-            <Button onClick={() => setModalVisible(true)}>Add a photo</Button>
+          <div className={styles["button-lists"]}>
+            <button
+              className="border border-gray-300 border-solid px-2 py-1 focus:outline-none rounded text-gray-600"
+              onClick={() => setModalVisible(true)}
+            >
+              Add a photo
+            </button>
+            <button className="ml-6 text-gray-600 px-2 py-1 focus:outline-none">
+              Login
+            </button>
+            <button className="ml-2 bg-green-500 text-white px-2 py-1 rounded focus:outline-none">
+              Join free
+            </button>
           </div>
         </nav>
       </header>
