@@ -22,9 +22,9 @@ export default (props: any) => {
         },
         (err) => {
           console.log(err.response);
-          if (err.response.status === 401) {
-            props.setAuthen(false);
-          }
+          // if (err.response.status === 401) {
+          //   props.setAuthen(false);
+          // }
         }
       );
   }, []);

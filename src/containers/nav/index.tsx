@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import Button from "../../components/button";
 import Modal, { AddModal } from "components/modal";
+import logo from "assets/images/unsplash.svg";
 
 const NavBar = () => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -11,10 +12,7 @@ const NavBar = () => {
       <header>
         <nav className={styles["nav"]}>
           <div className={styles["left"]}>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Eramet_Logotype.png"
-              alt=""
-            />
+            <img src={logo} alt="" />
             <div className={styles["input-container"]}>
               <input
                 placeholder="Search by name"
