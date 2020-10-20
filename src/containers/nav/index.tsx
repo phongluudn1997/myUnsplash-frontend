@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import Button from "../../components/button";
 import Modal, { AddModal } from "components/modal";
@@ -6,6 +6,10 @@ import logo from "assets/images/unsplash.svg";
 
 const NavBar = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+  };
 
   return (
     <div>
@@ -15,26 +19,10 @@ const NavBar = () => {
             <img src={logo} alt="" />
             <div className="w-full ml-16">
               <form
-                className="h-40 rounded-xl"
-                style={{
-                  height: 40,
-                  borderRadius: 24,
-                  border: "1px solid transparent",
-                  backgroundColor: "#eee",
-                  display: "flex",
-                  transition: "ease-in-out .1s all",
-                  overflow: "hidden",
-                  width: 400,
-                }}
+                onSubmit={handleSubmit}
+                className={`${styles["search-form"]} bg-gray-100`}
               >
-                <button
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: 40,
-                    justifyContent: "center",
-                  }}
-                >
+                <button className={styles["form-button"]}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -51,19 +39,13 @@ const NavBar = () => {
                   </svg>
                 </button>
                 <input
-                  style={{
-                    flexGrow: 1,
-                    backgroundColor: "initial",
-                  }}
+                  placeholder="Search photos"
+                  className={styles["search-input"]}
                   type="text"
                 />
                 <button
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: 40,
-                    justifyContent: "center",
-                  }}
+                  id="closing-button"
+                  className={`${styles["form-button"]} ${styles["closing-button"]}`}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
