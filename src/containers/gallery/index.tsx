@@ -3,34 +3,43 @@ import axios from "axios";
 import Gallery from "react-photo-gallery";
 import demoPhotos from "./demoPhotos";
 import AddModal from "./addModal";
+import { DataProfile } from "data-access";
 
 export default (props: any) => {
-  const [photos, setPhotos] = useState<string[]>([]);
+  const [statePhotos, setPhotos] = useState<any[]>([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    axios
-      .get("http://localhost:8000/api/photo", {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then(
-        (res) => {
-          setPhotos([...photos, ...res.data.data.listPhotos]);
-        },
-        (err) => {
-          console.log(err.response);
-          // if (err.response.status === 401) {
-          //   props.setAuthen(false);
-          // }
-        }
-      );
+    const fetchData = async function () {
+      const res = await DataProfile.Get("/photos");
+      const { photos } = res.data.data;
+
+      const finalPhotos = photos
+        .filter((photo: any) => {
+          return photo.url;
+        })
+        .map((photo: any) => {
+          return {
+            src: photo.url,
+            height: 3,
+            width: 4,
+          };
+        });
+
+      setPhotos(finalPhotos);
+      console.log(statePhotos);
+    };
+
+    fetchData();
   }, []);
 
   return (
     <div className="mt-lg">
-      <Gallery photos={demoPhotos} margin={12} columns={3} direction="column" />
+      <Gallery
+        photos={statePhotos}
+        margin={12}
+        columns={3}
+        direction="column"
+      />
     </div>
   );
 };
