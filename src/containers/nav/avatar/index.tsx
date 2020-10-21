@@ -1,11 +1,15 @@
-import React, { SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState, useRef } from "react";
 import styles from "./styles.module.scss";
 import { Redirect, withRouter } from "react-router";
 import { useAuth } from "context/auth";
+import { useClickOutside } from "hooks";
 
 const Avatar = (props: any) => {
   const { setAuthToken } = useAuth();
   const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const dropDownRef: any = useRef();
+
+  useClickOutside(dropDownRef, () => setDropdownVisible(false));
 
   const handleClick = () => {
     props.history.push("/login");
@@ -27,7 +31,7 @@ const Avatar = (props: any) => {
         />
       </button>
       {isDropdownVisible && (
-        <div className={styles["dropdown-content"]}>
+        <div ref={dropDownRef} className={styles["dropdown-content"]}>
           <button onClick={handleClick}>Log out</button>
         </div>
       )}
