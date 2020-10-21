@@ -2,14 +2,18 @@
   position: relative;
   margin-left: 12px;
   display: inline-block;
-  &:hover .dropdown-content {
-      display: block;
+  button{
+    &:focus {
+      outline: none;
+    }
   }
+  
 }
 
 .dropdown-content {
+  pointer-events: auto;
+  display: block;
   position: absolute;
-  display: none;
   right: 0;
   min-width: 160px;
   background-color: black;
