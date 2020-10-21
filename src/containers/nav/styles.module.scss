@@ -4,7 +4,7 @@
   align-items: center;
   padding: 12px 24px;
 
-  img {
+  .logo {
     height: 40px;
     margin-right: 24px;
   }
@@ -42,6 +42,11 @@
   &:focus + .closing-button {
     display: flex;
   }
+}
+
+.button-lists {
+  display: flex;
+  align-items: center;
 }
 
 .left {

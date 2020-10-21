@@ -1,0 +1,30 @@
+.dropdown-container {
+  position: relative;
+  margin-left: 12px;
+  display: inline-block;
+  &:hover .dropdown-content {
+      display: block;
+  }
+}
+
+.dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  min-width: 160px;
+  background-color: black;
+  border-radius: 8px;
+  color: white;
+  box-shadow: hsla(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.dropdown-content button {
+  padding: 8px 12px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  &:focus {
+    outline: none;
+  }
+}
