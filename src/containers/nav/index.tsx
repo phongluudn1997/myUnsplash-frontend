@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
 import Modal, { AddModal } from "components/modal";
 import logo from "assets/images/unsplash.svg";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -71,12 +72,16 @@ const NavBar = () => {
             >
               Add a photo
             </button>
-            <button className="ml-6 text-gray-600 px-2 py-1 focus:outline-none">
-              Login
-            </button>
-            <button className="ml-2 bg-green-500 text-white px-2 py-1 rounded focus:outline-none">
-              Join free
-            </button>
+            <Link to="/login">
+              <button className="ml-6 text-gray-600 px-2 py-1 focus:outline-none">
+                Login
+              </button>
+            </Link>
+            <Link to="/register">
+              <button className="ml-2 bg-green-500 text-white px-2 py-1 rounded focus:outline-none">
+                Join free
+              </button>
+            </Link>
           </div>
         </nav>
       </header>

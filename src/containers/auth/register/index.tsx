@@ -1,13 +1,12 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useFetchData } from "hooks";
-import { DataProfile } from "data-access";
-import { useAuth } from "context/auth";
+import { useFetchData } from "../../../hooks/";
+import { DataProfile } from "../../../data-access";
+import { useAuth } from "../../../context/auth";
 import { Redirect } from "react-router-dom";
 
 type Props = any;
 
-const Login: React.FC<Props> = (props) => {
+const Register: React.FC<Props> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -90,4 +89,4 @@ const Login: React.FC<Props> = (props) => {
   );
 };
 
-export default Login;
+export default Register;
