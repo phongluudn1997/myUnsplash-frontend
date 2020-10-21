@@ -13,7 +13,7 @@ const Login: React.FC<Props> = (props) => {
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
   const { setAuthToken } = useAuth();
-  const referer = props.location?.state?.referer || "/login";
+  const referer = props.location?.state?.referer || "/";
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
