@@ -14,6 +14,9 @@ const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
 
   const setAuthToken = (token: string) => {
+    if (!token) {
+      window.localStorage.removeItem("token");
+    }
     window.localStorage.setItem("token", token);
     setToken(token);
   };
@@ -25,7 +28,12 @@ const App = () => {
         <Switch>
           <PrivateRoute path="/" exact component={Gallery} />
           <PrivateRoute path="/private" component={PrivateComponent} />
-          <Route path="/login" component={Login} />
+          <Route
+            path="/login"
+            render={(props) => {
+              return <Login {...props} />;
+            }}
+          />
           <Route path="/register" component={Register} />
           <Route component={NotFoundPage} />
         </Switch>

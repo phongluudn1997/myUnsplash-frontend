@@ -8,11 +8,12 @@ import { Redirect } from "react-router-dom";
 type Props = any;
 
 const Login: React.FC<Props> = (props) => {
+  console.log(props);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(false);
   const { setAuthToken } = useAuth();
-  const referer = props.location?.state?.referer || "/";
+  const referer = props.location?.state?.referer || "/login";
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
