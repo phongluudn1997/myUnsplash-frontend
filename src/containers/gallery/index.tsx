@@ -6,10 +6,11 @@ import { DataProfile } from "data-access";
 
 export default (props: any) => {
   const [statePhotos, setPhotos] = useState<any[]>([]);
+  console.log(props);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [props.reFetchPage]);
 
   const fetchData = async function () {
     const res = await DataProfile.Get("/photos");
@@ -22,7 +23,7 @@ export default (props: any) => {
       .map((photo: any) => {
         return {
           src: photo.url,
-          height: 3,
+          height: Math.floor(Math.random() * 4) + 1,
           width: 4,
         };
       });

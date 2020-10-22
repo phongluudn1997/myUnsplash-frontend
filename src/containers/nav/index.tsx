@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Avatar from "./avatar";
 import { useAuth } from "context/auth";
 
-const NavBar = () => {
+const NavBar = ({ setRefetchPage }: any) => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handleSubmit = (e: SyntheticEvent) => {
@@ -98,7 +98,10 @@ const NavBar = () => {
 
       {isModalVisible ? (
         <Modal>
-          <AddModal setVisible={setModalVisible} />
+          <AddModal
+            setRefetchPage={setRefetchPage}
+            setVisible={setModalVisible}
+          />
         </Modal>
       ) : null}
     </div>

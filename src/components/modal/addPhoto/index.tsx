@@ -5,14 +5,18 @@ import styles from "./styles.module.scss";
 
 type Props = {
   setVisible: Function;
+  setRefetchPage: Function;
 };
 
-const AddModal = ({ setVisible }: Props) => {
+const AddModal = ({ setVisible, setRefetchPage }: Props) => {
   const [label, setLabel] = useState("");
   const [file, setFile] = useState(null);
 
   const addModalRef = useRef<any>();
-  useClickOutside(addModalRef, () => setVisible(false));
+  useClickOutside(addModalRef, () => {
+    setVisible(false);
+    setRefetchPage(Math.random());
+  });
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -53,7 +57,13 @@ const AddModal = ({ setVisible }: Props) => {
         </div>
       </div>
       <div className={styles["footer"]}>
-        <span onClick={() => setVisible(false)} className={styles["secondary"]}>
+        <span
+          onClick={() => {
+            setVisible(false);
+            setRefetchPage(Math.random);
+          }}
+          className={styles["secondary"]}
+        >
           Cancel
         </span>
         <button className={styles["primary"]} type="submit">

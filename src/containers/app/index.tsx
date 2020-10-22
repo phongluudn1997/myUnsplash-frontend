@@ -13,6 +13,7 @@ import ErrorBoundary from "containers/error-boundaries";
 
 const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [reFetchPage, setRefetchPage] = useState(1);
 
   const setAuthToken = (token: string) => {
     if (!token) {
@@ -26,9 +27,14 @@ const App = () => {
     <ErrorBoundary>
       <AuthContext.Provider value={{ token, setAuthToken }}>
         <Router>
-          <NavBar />
+          <NavBar setRefetchPage={setRefetchPage} />
           <Switch>
-            <PrivateRoute path="/" exact component={Gallery} />
+            <PrivateRoute
+              reFetchPage={reFetchPage}
+              path="/"
+              exact
+              component={Gallery}
+            />
             <PrivateRoute path="/private" component={PrivateComponent} />
             <Route
               path="/login"
