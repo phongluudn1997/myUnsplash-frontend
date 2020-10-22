@@ -9,29 +9,34 @@ export default (props: any) => {
   const [statePhotos, setPhotos] = useState<any[]>([]);
 
   useEffect(() => {
-    const fetchData = async function () {
-      const res = await DataProfile.Get("/photos");
-      const { photos } = res.data.data;
-
-      const finalPhotos = photos
-        .filter((photo: any) => {
-          return photo.url;
-        })
-        .map((photo: any) => {
-          return {
-            src: photo.url,
-            height: 3,
-            width: 4,
-          };
-        });
-
-      setPhotos(finalPhotos);
-      console.log(statePhotos);
-    };
-
     fetchData();
   }, []);
 
+  const fetchData = async function () {
+    const res = await DataProfile.Get("/photos");
+    const { photos } = res.data.data;
+
+    const finalPhotos = photos
+      .filter((photo: any) => {
+        return photo.url;
+      })
+      .map((photo: any) => {
+        return {
+          src: photo.url,
+          height: 3,
+          width: 4,
+        };
+      });
+
+    console.log(finalPhotos);
+    setPhotos(finalPhotos);
+  };
+
+  console.log("State Photos", statePhotos);
+
+  if (!statePhotos.length) {
+    return <div>Loading</div>;
+  }
   return (
     <div className="mt-lg">
       <Gallery
