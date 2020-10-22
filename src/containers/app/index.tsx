@@ -9,6 +9,7 @@ import { AuthContext } from "context/auth";
 import NavBar from "containers/nav";
 import NotFoundPage from "components/404";
 import Register from "containers/auth/register";
+import ErrorBoundary from "containers/error-boundaries";
 
 const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -22,23 +23,25 @@ const App = () => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, setAuthToken }}>
-      <Router>
-        <NavBar />
-        <Switch>
-          <PrivateRoute path="/" exact component={Gallery} />
-          <PrivateRoute path="/private" component={PrivateComponent} />
-          <Route
-            path="/login"
-            render={(props) => {
-              return <Login {...props} />;
-            }}
-          />
-          <Route path="/register" component={Register} />
-          <Route component={NotFoundPage} />
-        </Switch>
-      </Router>
-    </AuthContext.Provider>
+    <ErrorBoundary>
+      <AuthContext.Provider value={{ token, setAuthToken }}>
+        <Router>
+          <NavBar />
+          <Switch>
+            <PrivateRoute path="/" exact component={Gallery} />
+            <PrivateRoute path="/private" component={PrivateComponent} />
+            <Route
+              path="/login"
+              render={(props) => {
+                return <Login {...props} />;
+              }}
+            />
+            <Route path="/register" component={Register} />
+            <Route component={NotFoundPage} />
+          </Switch>
+        </Router>
+      </AuthContext.Provider>
+    </ErrorBoundary>
   );
 };
 
