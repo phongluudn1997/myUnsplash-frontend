@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Gallery from "react-photo-gallery";
 import demoPhotos from "./demoPhotos";
-import AddModal from "./addModal";
 import { DataProfile } from "data-access";
 
 export default (props: any) => {

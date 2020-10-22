@@ -15,7 +15,7 @@ const AddModal = ({ setVisible }: Props) => {
     const data = new FormData();
     data.append("label", label);
     data.append("photo", file || "");
-    DataProfile.Post("/photo", {
+    DataProfile.Post("/photos", {
       data,
     }).then((res) => {
       console.log(res);
