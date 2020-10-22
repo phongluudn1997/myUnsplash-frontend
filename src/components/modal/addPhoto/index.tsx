@@ -1,4 +1,5 @@
-import React, { SyntheticEvent, useState } from "react";
+import { useClickOutside } from "hooks";
+import React, { SyntheticEvent, useState, useRef } from "react";
 import { DataProfile } from "../../../data-access";
 import styles from "./styles.module.scss";
 
@@ -9,6 +10,9 @@ type Props = {
 const AddModal = ({ setVisible }: Props) => {
   const [label, setLabel] = useState("");
   const [file, setFile] = useState(null);
+
+  const addModalRef = useRef<any>();
+  useClickOutside(addModalRef, () => setVisible(false));
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -28,7 +32,7 @@ const AddModal = ({ setVisible }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles["modal"]}>
+    <form ref={addModalRef} onSubmit={handleSubmit} className={styles["modal"]}>
       <div className={styles["body"]}>
         <div>
           <input
