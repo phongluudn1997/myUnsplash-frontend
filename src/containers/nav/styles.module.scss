@@ -34,9 +34,12 @@
 
 .search-input {
   background-color: transparent;
+  width: 200px;
+  transition: width 0.5s;
 
   &:focus {
     outline: none;
+    width: 300px;
   }
 
   &:focus + .closing-button {
