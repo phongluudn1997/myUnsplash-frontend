@@ -3,6 +3,7 @@ import axios from "axios";
 import Gallery from "react-photo-gallery";
 import demoPhotos from "./demoPhotos";
 import { DataProfile } from "data-access";
+import "./gallery.scss";
 
 export default (props: any) => {
   const [statePhotos, setPhotos] = useState<any[]>([]);
@@ -32,19 +33,42 @@ export default (props: any) => {
     setPhotos(finalPhotos);
   };
 
-  console.log("State Photos", statePhotos);
+  function calculateSection() {
+    return statePhotos.map((photo, i) => {
+      return (
+        <section className="gallery">
+          {statePhotos.slice(i * 14, i * 14 + 14).map((photo, index) => (
+            <figure className={`gallery__item gallery__item--${index + 1}`}>
+              <img
+                src={photo.src}
+                alt="Gallery image 1"
+                className="gallery__img"
+              />
+            </figure>
+          ))}
+        </section>
+      );
+    });
+  }
 
   if (!statePhotos.length) {
     return <div>Loading</div>;
   }
   return (
-    <div className="mt-lg">
-      <Gallery
-        photos={statePhotos}
-        margin={12}
-        columns={3}
-        direction="column"
-      />
-    </div>
+    <div>{calculateSection()}</div>
+
+    // <section className="gallery">
+    //   {statePhotos.map((photo, index) => {
+    //     return (
+    //       <figure className={`gallery__item gallery__item--${index + 1}`}>
+    //         <img
+    //           src={photo.src}
+    //           alt="Gallery image 1"
+    //           className="gallery__img"
+    //         />
+    //       </figure>
+    //     );
+    //   })}
+    // </section>
   );
 };
