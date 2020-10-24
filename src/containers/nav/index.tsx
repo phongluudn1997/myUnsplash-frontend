@@ -5,9 +5,10 @@ import logo from "assets/images/unsplash.svg";
 import { Link } from "react-router-dom";
 import Avatar from "./avatar";
 import { useAuth } from "context/auth";
+import ModalTest from "../../components/UI/modal";
 
 const NavBar = ({ setRefetchPage }: any) => {
-  const [isModalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(true);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
