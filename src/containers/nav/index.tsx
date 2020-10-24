@@ -1,14 +1,15 @@
 import React, { SyntheticEvent, useState } from "react";
 import styles from "./styles.module.scss";
-import Modal, { AddModal } from "components/modal";
+// import Modal, { AddModal } from "components/modal";
 import logo from "assets/images/unsplash.svg";
 import { Link } from "react-router-dom";
 import Avatar from "./avatar";
 import { useAuth } from "context/auth";
-import ModalTest from "../../components/UI/modal";
+import Modal from "../../components/UI/modal";
+import AddModal from "./addPhoto";
 
 const NavBar = ({ setRefetchPage }: any) => {
-  const [isModalVisible, setModalVisible] = useState(true);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -97,14 +98,15 @@ const NavBar = ({ setRefetchPage }: any) => {
         </nav>
       </header>
 
-      {isModalVisible ? (
-        <Modal>
-          <AddModal
-            setRefetchPage={setRefetchPage}
-            setVisible={setModalVisible}
-          />
-        </Modal>
-      ) : null}
+      <Modal
+        isShow={isModalVisible}
+        onClickOutside={() => setModalVisible(false)}
+      >
+        <AddModal
+          setVisible={setModalVisible}
+          setRefetchPage={setRefetchPage}
+        />
+      </Modal>
     </div>
   );
 };

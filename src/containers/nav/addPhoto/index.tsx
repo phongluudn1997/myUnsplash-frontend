@@ -12,12 +12,6 @@ const AddModal = ({ setVisible, setRefetchPage }: Props) => {
   const [label, setLabel] = useState("");
   const [file, setFile] = useState(null);
 
-  const addModalRef = useRef<any>();
-  useClickOutside(addModalRef, () => {
-    setVisible(false);
-    setRefetchPage(Math.random());
-  });
-
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     const data = new FormData();
@@ -36,7 +30,7 @@ const AddModal = ({ setVisible, setRefetchPage }: Props) => {
   };
 
   return (
-    <form ref={addModalRef} onSubmit={handleSubmit} className={styles["modal"]}>
+    <form onSubmit={handleSubmit} className={styles["modal"]}>
       <div className={styles["body"]}>
         <div>
           <input
