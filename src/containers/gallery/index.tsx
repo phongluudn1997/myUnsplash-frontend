@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Gallery from "react-photo-gallery";
-import demoPhotos from "./demoPhotos";
 import { DataProfile } from "data-access";
 import "./gallery.scss";
 import Masonry from "react-masonry-css";
