@@ -1,93 +1,23 @@
-$color-grey-light-1: #f7f7f7;
-.gallery {
-  background-color: $color-grey-light-1;
-  grid-column: full-start / full-end;
+.my-masonry-grid {
+  display: -webkit-box;
+  /* Not needed if autoprefixing */
+  display: -ms-flexbox;
+  /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -24px;
+  /* gutter size offset */
+  width: auto;
+}
 
-  display: grid;
-  /*grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(7, 5vw);*/
-  grid-template: repeat(7, 5vw) / repeat(8, 1fr);
-  grid-gap: 1.5rem;
-  padding-bottom: 1.5rem;
-  &:last-child{
-    padding-bottom: 0;
-  }
-  &__item {
-    &--1 {
-      grid-row: 1 / span 2;
-      grid-column: 1 / span 2;
-    }
+.my-masonry-grid_column {
+  padding-left: 24px;
+  /* gutter size */
+  background-clip: padding-box;
+}
 
-    &--2 {
-      grid-row: 1 / span 3;
-      grid-column: 3 / span 3;
-    }
-
-    &--3 {
-      grid-row: 1 / span 2;
-      grid-column: 6 / 7;
-    }
-
-    &--4 {
-      grid-row: 1 / span 2;
-      grid-column: 7 / -1;
-    }
-
-    &--5 {
-      grid-row: 3 / span 3;
-      grid-column: 1 / span 2;
-    }
-
-    &--6 {
-      grid-row: 4 / span 2;
-      grid-column: 3 / span 2;
-    }
-
-    &--7 {
-      grid-row: 4 / 5;
-      grid-column: 5 / 6;
-    }
-
-    &--8 {
-      grid-row: 3 / span 2;
-      grid-column: 6 / span 2;
-    }
-
-    &--9 {
-      grid-row: 3 / span 3;
-      grid-column: 8 / -1;
-    }
-
-    &--10 {
-      grid-row: 6 / span 2;
-      grid-column: 1 / 2;
-    }
-
-    &--11 {
-      grid-row: 6 / span 2;
-      grid-column: 2 / span 2;
-    }
-
-    &--12 {
-      grid-row: 6 / span 2;
-      grid-column: 4 / 5;
-    }
-
-    &--13 {
-      grid-row: 5 / span 3;
-      grid-column: 5 / span 3;
-    }
-
-    &--14 {
-      grid-row: 6 / span 2;
-      grid-column: 8 / -1;
-    }
-  }
-
-  &__img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
+/* Style your items */
+.my-masonry-grid_column>div {
+  /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 24px;
 }
