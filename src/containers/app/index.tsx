@@ -10,6 +10,7 @@ import NavBar from "containers/nav";
 import NotFoundPage from "components/404";
 import Register from "containers/auth/register";
 import ErrorBoundary from "containers/error-boundaries";
+import style from "./styles.module.scss";
 
 const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem("token"));
@@ -28,23 +29,25 @@ const App = () => {
       <AuthContext.Provider value={{ token, setAuthToken }}>
         <Router>
           <NavBar setRefetchPage={setRefetchPage} />
-          <Switch>
-            <PrivateRoute
-              reFetchPage={reFetchPage}
-              path="/"
-              exact
-              component={Gallery}
-            />
-            <PrivateRoute path="/private" component={PrivateComponent} />
-            <Route
-              path="/login"
-              render={(props) => {
-                return <Login {...props} />;
-              }}
-            />
-            <Route path="/register" component={Register} />
-            <Route component={NotFoundPage} />
-          </Switch>
+          <div className={style["app"]}>
+            <Switch>
+              <PrivateRoute
+                reFetchPage={reFetchPage}
+                path="/"
+                exact
+                component={Gallery}
+              />
+              <PrivateRoute path="/private" component={PrivateComponent} />
+              <Route
+                path="/login"
+                render={(props) => {
+                  return <Login {...props} />;
+                }}
+              />
+              <Route path="/register" component={Register} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </div>
         </Router>
       </AuthContext.Provider>
     </ErrorBoundary>

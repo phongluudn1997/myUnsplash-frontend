@@ -20,9 +20,16 @@ export default (props: any) => {
   if (!statePhotos) {
     return "Loading...";
   }
+
+  const breakpointColumnsObj = {
+    default: 3,
+    1100: 2,
+    700: 1,
+  };
+
   return (
     <Masonry
-      breakpointCols={3}
+      breakpointCols={breakpointColumnsObj}
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column"
     >
